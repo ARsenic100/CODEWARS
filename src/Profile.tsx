@@ -48,72 +48,57 @@ const Profile: React.FC = () => {
   const ananyaSolved = questions.filter(q => q.solvedByAnanya).length;
 
   return (
-    <div className="max-w-2xl mx-auto p-4 sm:p-6 bg-gray-800 rounded-lg shadow text-white mt-4 sm:mt-8">
-      <h1 className="text-2xl font-bold mb-6 text-center">Head-to-Head</h1>
-      <div className="flex flex-col sm:flex-row justify-around mb-8 gap-4">
-        {LEETCODE_USERS.map(u => (
-          <div key={u.name} className="flex flex-col items-center bg-gray-900 rounded-lg p-4 w-full sm:w-1/2 mb-4 sm:mb-0">
-            {profiles[u.name]?.profile?.userAvatar ? (
-              <img
-                src={profiles[u.name].profile.userAvatar}
-                alt={u.name}
-                className="w-20 h-20 rounded-full mb-2 border-2 border-blue-400"
-              />
-            ) : (
-              <div className="w-20 h-20 rounded-full mb-2 bg-gray-700 animate-pulse" />
-            )}
-            <a
-              href={u.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-lg text-blue-400 hover:underline mb-1"
-            >
-              {profiles[u.name]?.username || u.username}
-            </a>
-            <div className="text-gray-300 text-sm mb-1">{profiles[u.name]?.profile?.realName || ''}</div>
-            <div className="text-gray-400 text-xs">{profiles[u.name]?.profile?.countryName || ''}</div>
-            <div className="text-gray-400 text-xs">Leetcode Ranking: {profiles[u.name]?.profile?.ranking ?? '—'}</div>
-            <div className="mt-2 text-sm text-gray-300">
-              Solved: <span className="font-bold text-blue-400">{u.name === 'Aditya' ? adityaSolved : ananyaSolved}</span>
+    <div className="bg-black text-white min-h-screen">
+      <div className="container mx-auto p-4">
+        <div className="bg-zinc-950/90 backdrop-blur-lg rounded-3xl shadow-2xl border border-white/20 min-h-[60vh] p-4 sm:p-8 flex flex-col gap-6 animate-fade-in">
+          <h1 className="text-4xl font-extrabold mb-4 text-center drop-shadow-lg bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent tracking-tight z-10">Head-to-Head</h1>
+          <div className="flex justify-center mb-6">
+            <div className="px-8 py-2 rounded-full bg-black/40 border border-blue-400/40 shadow text-blue-300 font-bold text-lg flex items-center gap-2 backdrop-blur-lg">
+              Total CodeWars: <span className="text-white font-extrabold">{total}</span>
             </div>
           </div>
-        ))}
+          <div className="flex flex-col sm:flex-row justify-around mb-8 gap-6 sm:gap-8">
+            {LEETCODE_USERS.map((u, idx) => (
+              <div key={u.name} className="flex flex-col items-center bg-neutral-900/80 rounded-2xl shadow-xl border-2 border-white/30 p-8 w-full sm:w-1/2 transition-transform duration-300 hover:scale-[1.03] hover:shadow-2xl animate-fade-in relative">
+                {idx === 1 && <div className="hidden sm:block absolute left-0 top-1/2 -translate-y-1/2 w-px h-3/4 bg-gradient-to-b from-blue-400/30 via-white/10 to-pink-400/30"></div>}
+                {profiles[u.name]?.profile?.userAvatar ? (
+                  <img
+                    src={profiles[u.name].profile.userAvatar}
+                    alt={u.name}
+                    className="w-20 h-20 rounded-full mb-2 border-2 border-blue-400"
+                  />
+                ) : (
+                  <div className="w-20 h-20 rounded-full mb-2 bg-zinc-800 animate-pulse" />
+                )}
+                <a
+                  href={u.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-bold text-lg text-blue-400 hover:underline mb-1"
+                >
+                  {profiles[u.name]?.username || u.username}
+                </a>
+                <div className="text-gray-300 text-sm mb-1">{profiles[u.name]?.profile?.realName || ''}</div>
+                <div className="text-gray-400 text-xs">Leetcode Ranking: {profiles[u.name]?.profile?.ranking ?? '—'}</div>
+                <div className="mt-2 text-sm text-gray-300">
+                  Solved: <span className="font-bold text-blue-400">{u.name === 'Aditya' ? adityaSolved : ananyaSolved}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="flex flex-col sm:flex-row justify-around items-center mb-8 gap-4 sm:gap-8">
+            <div className="px-6 py-2 rounded-full bg-black/40 border border-blue-400/40 shadow text-blue-400 font-bold text-xl flex items-center gap-2">
+              <span className="text-2xl text-blue-300 font-extrabold">{adityaWins}</span> Aditya Wins
+            </div>
+            <div className="px-6 py-2 rounded-full bg-black/40 border border-white/20 shadow text-white font-bold text-xl flex items-center gap-2">
+              <span className="text-2xl text-white font-extrabold">{ties}</span> Ties
+            </div>
+            <div className="px-6 py-2 rounded-full bg-black/40 border border-pink-400/40 shadow text-pink-400 font-bold text-xl flex items-center gap-2">
+              <span className="text-2xl text-pink-300 font-extrabold">{ananyaWins}</span> Ananya Wins
+            </div>
+          </div>
+        </div>
       </div>
-      {loading ? (
-        <div className="text-gray-300">Loading...</div>
-      ) : (
-        <>
-          <div className="flex flex-col sm:flex-row justify-around mb-8 gap-4">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-blue-400">{adityaWins}</div>
-              <div className="text-lg">Aditya Wins</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-gray-400">{ties}</div>
-              <div className="text-lg">Ties</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-pink-400">{ananyaWins}</div>
-              <div className="text-lg">Ananya Wins</div>
-            </div>
-          </div>
-          <div className="flex flex-col sm:flex-row justify-between items-center mb-6 gap-2">
-            <div className="text-lg">Total CodeWars: <span className="font-bold">{total}</span></div>
-          </div>
-          <div className="bg-gray-900 rounded p-2 sm:p-4">
-            <h2 className="text-lg font-semibold mb-2">Recent Contests</h2>
-            <ul className="divide-y divide-gray-700 text-xs sm:text-sm">
-              {contests.slice(0, 5).map((c, i) => (
-                <li key={c.code} className="py-2 flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-0">
-                  <span className="text-gray-300">{new Date(c.endTime).toLocaleDateString()} - </span>
-                  <span className="font-semibold text-blue-400">{c.winner || 'Tie'}</span>
-                  <span className="text-sm text-gray-400">Code: {c.code}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </>
-      )}
     </div>
   );
 };

@@ -37,4 +37,4 @@ setInterval(() => {
   }).on('error', (err) => {
     console.error('Keep-alive ping error:', err.message);
   });
-}, 10 * 60 * 1000); // every 10 minutes 
+}, 10 * 60 * 100); // every 10 minutes 
