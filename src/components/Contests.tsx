@@ -259,24 +259,24 @@ const Contests: React.FC = () => {
           <div className="mt-6">
             <h3 className="font-semibold mb-2 text-gray-200">Or select from available live contests:</h3>
             <div className="overflow-x-auto bg-gray-900 rounded-lg">
-              <table className="min-w-full text-white">
+              <table className="min-w-full text-white text-xs sm:text-sm">
                 <thead className="bg-gray-900 text-white">
                   <tr>
-                    <th className="py-2 px-4">Code</th>
-                    <th className="py-2 px-4">Start</th>
-                    <th className="py-2 px-4">End</th>
-                    <th className="py-2 px-4">Duration</th>
-                    <th className="py-2 px-4">Join</th>
+                    <th className="py-2 px-2 sm:px-4 text-center">Code</th>
+                    <th className="py-2 px-2 sm:px-4 text-center">Start</th>
+                    <th className="py-2 px-2 sm:px-4 text-center">End</th>
+                    <th className="py-2 px-2 sm:px-4 text-center">Duration</th>
+                    <th className="py-2 px-2 sm:px-4 text-center">Join</th>
                   </tr>
                 </thead>
                 <tbody>
                   {liveContests.map((c) => (
                     <tr key={c.code} className="border-b border-gray-700">
-                      <td className="py-2 px-4 font-mono">{c.code}</td>
-                      <td className="py-2 px-4">{new Date(c.startTime).toLocaleTimeString()}</td>
-                      <td className="py-2 px-4">{new Date(c.endTime).toLocaleTimeString()}</td>
-                      <td className="py-2 px-4">{c.duration} min</td>
-                      <td className="py-2 px-4">
+                      <td className="py-2 px-2 sm:px-4 text-center font-mono">{c.code}</td>
+                      <td className="py-2 px-2 sm:px-4 text-center">{new Date(c.startTime).toLocaleTimeString()}</td>
+                      <td className="py-2 px-2 sm:px-4 text-center">{new Date(c.endTime).toLocaleTimeString()}</td>
+                      <td className="py-2 px-2 sm:px-4 text-center">{c.duration} min</td>
+                      <td className="py-2 px-2 sm:px-4 text-center">
                         <button
                           className="bg-blue-600 text-white px-2 py-1 rounded hover:bg-blue-700"
                           onClick={() => handleSelectLiveContest(c.code)}
@@ -312,25 +312,25 @@ const Contests: React.FC = () => {
             <div className="font-semibold text-pink-400">Ananya Points: <span className="text-white">{getPoints('Ananya')}</span></div>
           </div>
           <div className="overflow-x-auto bg-gray-900 rounded-lg">
-            <table className="min-w-full text-white">
+            <table className="min-w-full text-white text-xs sm:text-sm">
               <thead className="bg-gray-900 text-white">
                 <tr>
-                  <th className="py-2 px-4">Company</th>
-                  <th className="py-2 px-4">Question</th>
-                  <th className="py-2 px-4">Difficulty</th>
-                  <th className="py-2 px-4">Aditya</th>
-                  <th className="py-2 px-4">Ananya</th>
+                  <th className="py-2 px-2 sm:px-4 text-center">Company</th>
+                  <th className="py-2 px-2 sm:px-4 text-center">Question</th>
+                  <th className="py-2 px-2 sm:px-4 text-center">Difficulty</th>
+                  <th className="py-2 px-2 sm:px-4 text-center">Aditya</th>
+                  <th className="py-2 px-2 sm:px-4 text-center">Ananya</th>
                 </tr>
               </thead>
               <tbody>
                 {joinedContest.questions.map((q: Question) => (
                   <tr key={q._id} className="border-b border-gray-700">
-                    <td className="py-2 px-4">{q.company}</td>
-                    <td className="py-2 px-4">
+                    <td className="py-2 px-2 sm:px-4 text-center">{q.company}</td>
+                    <td className="py-2 px-2 sm:px-4 text-center">
                       <a href={q.link} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">{q.question}</a>
                     </td>
-                    <td className="py-2 px-4">{q.level}</td>
-                    <td className="py-2 px-4">
+                    <td className="py-2 px-2 sm:px-4 text-center">{q.level}</td>
+                    <td className="py-2 px-2 sm:px-4 text-center">
                       <input
                         type="checkbox"
                         checked={isSolved(q._id, 'Aditya')}
@@ -338,7 +338,7 @@ const Contests: React.FC = () => {
                         onChange={() => handleSolve(q._id, 'Aditya', !isSolved(q._id, 'Aditya'))}
                       />
                     </td>
-                    <td className="py-2 px-4">
+                    <td className="py-2 px-2 sm:px-4 text-center">
                       <input
                         type="checkbox"
                         checked={isSolved(q._id, 'Ananya')}
@@ -379,11 +379,11 @@ const Contests: React.FC = () => {
               <table className="min-w-full text-white text-xs sm:text-sm">
                 <thead className="bg-gray-900 text-white">
                   <tr>
-                    <th className="py-2 px-2 sm:px-4">End Time</th>
-                    <th className="py-2 px-2 sm:px-4">Winner</th>
-                    <th className="py-2 px-2 sm:px-4">Questions</th>
-                    <th className="py-2 px-2 sm:px-4">Aditya Points</th>
-                    <th className="py-2 px-2 sm:px-4">Ananya Points</th>
+                    <th className="py-2 px-2 sm:px-4 text-center">End Time</th>
+                    <th className="py-2 px-2 sm:px-4 text-center">Winner</th>
+                    <th className="py-2 px-2 sm:px-4 text-center">Questions</th>
+                    <th className="py-2 px-2 sm:px-4 text-center">Aditya Points</th>
+                    <th className="py-2 px-2 sm:px-4 text-center">Ananya Points</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -392,9 +392,9 @@ const Contests: React.FC = () => {
                     const ananyaPoints = c.solves.filter(s => s.user === 'Ananya' && s.solved).length;
                     return (
                       <tr key={c.code} className="border-b border-gray-700">
-                        <td className="py-2 px-2 sm:px-4">{new Date(c.endTime).toLocaleString()}</td>
-                        <td className="py-2 px-2 sm:px-4 font-semibold text-blue-400">{c.winner || 'Tie'}</td>
-                        <td className="py-2 px-2 sm:px-4">
+                        <td className="py-2 px-2 sm:px-4 text-center">{new Date(c.endTime).toLocaleString()}</td>
+                        <td className="py-2 px-2 sm:px-4 text-center font-semibold text-blue-400">{c.winner || 'Tie'}</td>
+                        <td className="py-2 px-2 sm:px-4 text-center">
                           <ul className="list-disc ml-4">
                             {c.questions.map(q => (
                               <li key={q._id}>
@@ -403,8 +403,8 @@ const Contests: React.FC = () => {
                             ))}
                           </ul>
                         </td>
-                        <td className="py-2 px-2 sm:px-4">{adityaPoints}</td>
-                        <td className="py-2 px-2 sm:px-4">{ananyaPoints}</td>
+                        <td className="py-2 px-2 sm:px-4 text-center">{adityaPoints}</td>
+                        <td className="py-2 px-2 sm:px-4 text-center">{ananyaPoints}</td>
                       </tr>
                     );
                   })}

@@ -80,31 +80,31 @@ const AllQuestions: React.FC = () => {
           <table className="min-w-full text-white text-xs sm:text-sm">
             <thead className="bg-gray-900 text-white">
               <tr>
-                <th className="py-2 px-2 sm:px-4">Company</th>
-                <th className="py-2 px-2 sm:px-4">Question</th>
-                <th className="py-2 px-2 sm:px-4">Difficulty</th>
-                <th className="py-2 px-2 sm:px-4">Solved by Aditya</th>
-                <th className="py-2 px-2 sm:px-4">Solved by Ananya</th>
+                <th className="py-2 px-2 sm:px-4 text-center">Company</th>
+                <th className="py-2 px-2 sm:px-4 text-center">Question</th>
+                <th className="py-2 px-2 sm:px-4 text-center">Difficulty</th>
+                <th className="py-2 px-2 sm:px-4 text-center">Solved by Aditya</th>
+                <th className="py-2 px-2 sm:px-4 text-center">Solved by Ananya</th>
               </tr>
             </thead>
             <tbody>
               {questions.map((q) => (
                 <tr key={q._id} className="border-b border-gray-700">
-                  <td className="py-2 px-2 sm:px-4">{q.company}</td>
-                  <td className="py-2 px-2 sm:px-4">
+                  <td className="py-2 px-2 sm:px-4 text-center">{q.company}</td>
+                  <td className="py-2 px-2 sm:px-4 text-center">
                     <a href={q.link} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
                       {q.question}
                     </a>
                   </td>
-                  <td className="py-2 px-2 sm:px-4">{q.level}</td>
-                  <td className="py-2 px-2 sm:px-4">
+                  <td className="py-2 px-2 sm:px-4 text-center">{q.level}</td>
+                  <td className="py-2 px-2 sm:px-4 text-center">
                     <input
                       type="checkbox"
                       checked={q.solvedByAditya}
                       onChange={() => handleSolve(q._id, 'Aditya', !q.solvedByAditya)}
                     />
                   </td>
-                  <td className="py-2 px-2 sm:px-4">
+                  <td className="py-2 px-2 sm:px-4 text-center">
                     <input
                       type="checkbox"
                       checked={q.solvedByAnanya}
