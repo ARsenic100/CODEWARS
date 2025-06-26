@@ -164,9 +164,9 @@ const Contests: React.FC = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <div className="flex mb-4">
+      <div className="flex mb-4 flex-col sm:flex-row">
         <button
-          className={`px-4 py-2 rounded-l-md ${tab === 'create' ? 'bg-blue-600 text-white' : 'bg-gray-700 text-gray-300'}`}
+          className={`px-4 py-2 rounded-t-md sm:rounded-l-md sm:rounded-t-none ${tab === 'create' ? 'bg-blue-600 text-white' : 'bg-gray-700 text-gray-300'}`}
           onClick={() => setTab('create')}
         >
           Create Contest
@@ -178,7 +178,7 @@ const Contests: React.FC = () => {
           Live Contest Join
         </button>
         <button
-          className={`px-4 py-2 rounded-r-md ${tab === 'past' ? 'bg-blue-600 text-white' : 'bg-gray-700 text-gray-300'}`}
+          className={`px-4 py-2 rounded-b-md sm:rounded-r-md sm:rounded-b-none ${tab === 'past' ? 'bg-blue-600 text-white' : 'bg-gray-700 text-gray-300'}`}
           onClick={() => setTab('past')}
         >
           Past Contest Results
@@ -187,7 +187,7 @@ const Contests: React.FC = () => {
       {tab === 'create' && (
         <div className="bg-gray-800 rounded-lg p-6">
           <h2 className="text-xl font-bold mb-2 text-white">Create Contest</h2>
-          <form className="max-w-md space-y-4" onSubmit={handleCreateContest}>
+          <form className="max-w-md space-y-4 flex flex-col" onSubmit={handleCreateContest}>
             <div>
               <label className="block mb-1 font-medium text-gray-200">Number of Questions</label>
               <input
@@ -239,7 +239,7 @@ const Contests: React.FC = () => {
       {tab === 'join' && !joinedContest && (
         <div className="bg-gray-800 rounded-lg p-6">
           <h2 className="text-xl font-bold mb-2 text-white">Join Live Contest</h2>
-          <form className="max-w-md space-y-4" onSubmit={handleJoinContest}>
+          <form className="max-w-md space-y-4 flex flex-col" onSubmit={handleJoinContest}>
             <div>
               <label className="block mb-1 font-medium text-gray-200">Enter Contest Code</label>
               <input
@@ -366,7 +366,7 @@ const Contests: React.FC = () => {
       {tab === 'past' && (
         <div>
           <h2 className="text-xl font-bold mb-2 text-white">Past Contest Results</h2>
-          <div className="mb-4 p-4 bg-gray-800 rounded flex gap-8 items-center">
+          <div className="mb-4 p-4 bg-gray-800 rounded flex flex-col sm:flex-row gap-4 sm:gap-8 items-center">
             <div className="font-semibold text-blue-400">Aditya Wins: {adityaWins}</div>
             <div className="font-semibold text-pink-400">Ananya Wins: {ananyaWins}</div>
           </div>
@@ -376,14 +376,14 @@ const Contests: React.FC = () => {
             <div className="text-red-400">{pastError}</div>
           ) : (
             <div className="overflow-x-auto bg-gray-900 rounded-lg">
-              <table className="min-w-full text-white">
+              <table className="min-w-full text-white text-xs sm:text-sm">
                 <thead className="bg-gray-900 text-white">
                   <tr>
-                    <th className="py-2 px-4">End Time</th>
-                    <th className="py-2 px-4">Winner</th>
-                    <th className="py-2 px-4">Questions</th>
-                    <th className="py-2 px-4">Aditya Points</th>
-                    <th className="py-2 px-4">Ananya Points</th>
+                    <th className="py-2 px-2 sm:px-4">End Time</th>
+                    <th className="py-2 px-2 sm:px-4">Winner</th>
+                    <th className="py-2 px-2 sm:px-4">Questions</th>
+                    <th className="py-2 px-2 sm:px-4">Aditya Points</th>
+                    <th className="py-2 px-2 sm:px-4">Ananya Points</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -392,9 +392,9 @@ const Contests: React.FC = () => {
                     const ananyaPoints = c.solves.filter(s => s.user === 'Ananya' && s.solved).length;
                     return (
                       <tr key={c.code} className="border-b border-gray-700">
-                        <td className="py-2 px-4">{new Date(c.endTime).toLocaleString()}</td>
-                        <td className="py-2 px-4 font-semibold text-blue-400">{c.winner || 'Tie'}</td>
-                        <td className="py-2 px-4">
+                        <td className="py-2 px-2 sm:px-4">{new Date(c.endTime).toLocaleString()}</td>
+                        <td className="py-2 px-2 sm:px-4 font-semibold text-blue-400">{c.winner || 'Tie'}</td>
+                        <td className="py-2 px-2 sm:px-4">
                           <ul className="list-disc ml-4">
                             {c.questions.map(q => (
                               <li key={q._id}>
@@ -403,8 +403,8 @@ const Contests: React.FC = () => {
                             ))}
                           </ul>
                         </td>
-                        <td className="py-2 px-4">{adityaPoints}</td>
-                        <td className="py-2 px-4">{ananyaPoints}</td>
+                        <td className="py-2 px-2 sm:px-4">{adityaPoints}</td>
+                        <td className="py-2 px-2 sm:px-4">{ananyaPoints}</td>
                       </tr>
                     );
                   })}
